@@ -10,6 +10,7 @@ const { url, port, db } = require('./config');
 
 mongoose.connect(`mongodb://${url}:${port}/${db}`, { useMongoClient: true });
 
+const auth = require('./routes/auth');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', auth);
 app.use('/', index);
 app.use('/users', users);
 
