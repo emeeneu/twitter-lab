@@ -5,6 +5,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+const { url, port, db } = require('./config');
+
+mongoose.connect(`mongodb://${url}:${port}/${db}`, { useMongoClient: true });
 
 const index = require('./routes/index');
 const users = require('./routes/users');
